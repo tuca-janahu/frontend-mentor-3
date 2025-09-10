@@ -9,7 +9,8 @@ function Input({
   return (
     <input
       type="number"
-      className={cn(`border border-gray-300 p-2 pl-4 flex-1 h-16 text-4xl font-extrabold w-50 placeholder:text-gray-300 placeholder:font-weight-black rounded mb-4`, className)}
+      inputMode="numeric"
+      className={cn(` border border-gray-300 p-2 pl-4 flex-1 md:h-16 md:text-4xl md:w-50 w-18 font-extrabold  placeholder:text-gray-300 placeholder:font-weight-black rounded mb-4`, className)}
       {...props}
     />
   );

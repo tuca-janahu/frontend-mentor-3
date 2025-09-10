@@ -7,7 +7,7 @@ function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) {
   return (
     <button
-      className={`bg-purple-400 text-white w-20 h-20 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors ml-[-2.5rem] z-10 ${className}`}
+      className={`bg-purple-400 text-white md:w-20 md:h-20 h-14 w-14 text-xs md:text-base rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors ml-[-2.5rem] z-10 ${className}`}
       {...props}
     >
       {children}
