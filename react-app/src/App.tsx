@@ -1,7 +1,7 @@
 import Input from "./components/Input";
 import Label from "./components/Label";
 import Button from "./components/Button";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import StandardDate from "./components/StandardDate";
 import type { Age } from "./lib/types";
 import { calculateAge } from "./lib/calculate";
@@ -13,6 +13,18 @@ function App() {
   const [age, setAge] = useState<Age | null>(null);
 
   const [errors, setErrors] = useState<DateErrors>({});
+
+   const formRef = useRef<HTMLFormElement>(null); 
+
+  useEffect(() => {
+    if (!formRef.current) return;
+    const firstInvalid =
+      formRef.current.querySelector<HTMLInputElement>('input[aria-invalid="true"]');
+    if (firstInvalid) {
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }, [errors]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,7 +58,8 @@ function App() {
     e.preventDefault();
     setAge(null);
     setErrors({});
-    e.currentTarget.form?.reset();
+    formRef.current?.reset(); // Reseta o formulário
+    formRef.current?.querySelector<HTMLInputElement>("#day")?.focus();
   }
 
   return (
@@ -56,7 +69,7 @@ function App() {
       md:max-w-4xl md:py-12 md:px-24 md:mx-auto md:mt-0.5 md:[border-end-end-radius:400px]"
     >
       <section className="">
-        <form onSubmit={handleSubmit} className="" action="">
+        <form ref={formRef} onSubmit={handleSubmit} className="" action="">
           <div className="flex gap-4 mt-5">
             <div className="">
               <Label htmlFor="day">DIA</Label>
