@@ -4,8 +4,7 @@ import Form from "../components/Form";
 import type { Age } from "../lib/types";
 import { useState } from "react";
 
-
-export default function EventPage() {
+function EventPage() {
   const [left, setLeft] = useState<Age | null>(null);
 
   return (
@@ -24,3 +23,5 @@ export default function EventPage() {
     </main>
   );
 }
+
+export default EventPage;
